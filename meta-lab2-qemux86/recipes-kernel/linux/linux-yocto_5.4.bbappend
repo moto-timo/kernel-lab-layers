@@ -1,11 +1,11 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 COMPATIBLE_MACHINE = "lab2-qemux86"
 
 KBRANCH_lab2-qemux86 = "v5.4/standard/base"
 KMACHINE_lab2-qemux86  = "common-pc"
 
-KERNEL_FEATURES_append_lab2-qemux86 += " cfg/smp.scc"
+KERNEL_FEATURES:append:lab2-qemux86 = " cfg/smp.scc"
 
 #SRC_URI += "file://mtd-block.cfg"
 

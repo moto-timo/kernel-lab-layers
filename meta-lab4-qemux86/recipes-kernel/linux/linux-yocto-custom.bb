@@ -51,6 +51,6 @@ KERNEL_VERSION_SANITY_SKIP="1"
 
 COMPATIBLE_MACHINE_lab4-qemux86 = "lab4-qemux86"
 #The following features are metadata used by linux-yocto
-KERNEL_FEATURES_remove_lab4-qemux86 = " features/debug/printk.scc "
-KERNEL_FEATURES_remove_lab4-qemux86 = " features/kernel-sample/kernel-sample.scc"
-KERNEL_FEATURES_remove_lab3-qemux86 = "cfg/fs/vfat.scc"
+KERNEL_FEATURES:remove:lab4-qemux86 = " features/debug/printk.scc "
+KERNEL_FEATURES:remove:lab4-qemux86 = " features/kernel-sample/kernel-sample.scc"
+KERNEL_FEATURES:remove:lab3-qemux86 = "cfg/fs/vfat.scc"

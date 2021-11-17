@@ -27,7 +27,7 @@
 #            SRC_URI += "file://feature.scc"
 #
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
@@ -56,6 +56,6 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
 
 #The following features are metadata used by linux-yocto
-KERNEL_FEATURES_remove_lab3-qemux86 = " features/debug/printk.scc"
-KERNEL_FEATURES_remove_lab3-qemux86 = " features/kernel-sample/kernel-sample.scc"
-KERNEL_FEATURES_remove_lab3-qemux86 = "cfg/fs/vfat.scc"
+KERNEL_FEATURES:remove:lab3-qemux86 = " features/debug/printk.scc"
+KERNEL_FEATURES:remove:lab3-qemux86 = " features/kernel-sample/kernel-sample.scc"
+KERNEL_FEATURES:remove:lab3-qemux86 = "cfg/fs/vfat.scc"

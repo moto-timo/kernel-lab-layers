@@ -2,7 +2,7 @@ DESCRIPTION = "Mainline Linux Kernel"
 SECTION = "kernel"
 LICENSE = "GPLv2"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
