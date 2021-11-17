@@ -1,8 +1,8 @@
 diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 006242c..5538e8d8 100644
+index f4fb5c52b..ca3d63f23 100644
 --- a/drivers/misc/Kconfig
 +++ b/drivers/misc/Kconfig
-@@ -372,6 +372,11 @@ config HMC6352
+@@ -330,6 +330,11 @@ config HMC6352
  	  This driver provides support for the Honeywell HMC6352 compass,
  	  providing configuration and heading data via sysfs.
  
@@ -15,39 +15,29 @@ index 006242c..5538e8d8 100644
  	tristate "Dallas DS1682 Total Elapsed Time Recorder with Alarm"
  	depends on I2C
 diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 7d5c4cd..7d9c854 100644
+index e92a56d44..7c5c9a08b 100644
 --- a/drivers/misc/Makefile
 +++ b/drivers/misc/Makefile
-@@ -36,6 +36,7 @@ obj-$(CONFIG_DS1682)		+= ds1682.o
- obj-$(CONFIG_TI_DAC7512)	+= ti_dac7512.o
+@@ -32,6 +32,7 @@ obj-$(CONFIG_SENSORS_TSL2550)	+= tsl2550.o
+ obj-$(CONFIG_DS1682)		+= ds1682.o
  obj-$(CONFIG_C2PORT)		+= c2port/
  obj-$(CONFIG_HMC6352)		+= hmc6352.o
 +obj-$(CONFIG_YOCTO_TESTMOD)	+= yocto-testmod.o
  obj-y				+= eeprom/
  obj-y				+= cb710/
- obj-$(CONFIG_SPEAR13XX_PCIE_GADGET)	+= spear13xx_pcie_gadget.o
+ obj-$(CONFIG_VMWARE_BALLOON)	+= vmw_balloon.o
 diff --git a/drivers/misc/yocto-testmod.c b/drivers/misc/yocto-testmod.c
 new file mode 100644
-index 0000000..4a52de3
+index 000000000..c71b15e78
 --- /dev/null
 +++ b/drivers/misc/yocto-testmod.c
-@@ -0,0 +1,38 @@
+@@ -0,0 +1,28 @@
 +/*
 + * Copyright 2014 Intel Corporation
 + * Authored-by:  Tom Zanussi <tom.zanussi@linux.intel.com>
 + *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
++ * SPDX-License-Identifier: GPL-2.0-only
 + *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program; if not, write to the Free Software Foundation, Inc.,
-+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 + */
 +
 +#include <linux/module.h>
