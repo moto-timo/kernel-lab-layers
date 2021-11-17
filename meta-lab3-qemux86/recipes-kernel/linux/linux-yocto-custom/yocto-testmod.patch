@@ -1,0 +1,72 @@
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 6cb388e..086c6ab 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -381,6 +381,11 @@ config HMC6352
+ 	  This driver provides support for the Honeywell HMC6352 compass,
+ 	  providing configuration and heading data via sysfs.
+ 
++config YOCTO_TESTMOD
++	tristate "Yocto Test Driver"
++	help
++	  This driver provides a silly message for testing Yocto.
++
+ config DS1682
+ 	tristate "Dallas DS1682 Total Elapsed Time Recorder with Alarm"
+ 	depends on I2C
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index 99b9424..808a3fc 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -37,6 +37,7 @@ obj-$(CONFIG_DS1682)		+= ds1682.o
+ obj-$(CONFIG_TI_DAC7512)	+= ti_dac7512.o
+ obj-$(CONFIG_C2PORT)		+= c2port/
+ obj-$(CONFIG_HMC6352)		+= hmc6352.o
++obj-$(CONFIG_YOCTO_TESTMOD)	+= yocto-testmod.o
+ obj-y				+= eeprom/
+ obj-y				+= cb710/
+ obj-$(CONFIG_SPEAR13XX_PCIE_GADGET)	+= spear13xx_pcie_gadget.o
+diff --git a/drivers/misc/yocto-testmod.c b/drivers/misc/yocto-testmod.c
+new file mode 100644
+index 0000000..fdb2ea6
+--- /dev/null
++++ b/drivers/misc/yocto-testmod.c
+@@ -0,0 +1,38 @@
++/*
++ * Copyright 2013 Intel Corporation
++ * Authored-by:  Tom Zanussi <tom.zanussi@linux.intel.com>
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License along
++ * with this program; if not, write to the Free Software Foundation, Inc.,
++ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++ */
++
++#include <linux/module.h>
++
++static int __init yocto_testmod_init(void)
++{
++	printk("Billroy quacked here!");
++
++	return 0;
++}
++
++static void __exit yocto_testmod_exit(void)
++{
++	printk("Billroy did not quack here!");
++}
++
++module_init(yocto_testmod_init);
++module_exit(yocto_testmod_exit);
++
++MODULE_AUTHOR("Tom Zanussi <tom.zanussi@linux.intel.com");
++MODULE_DESCRIPTION("Yocto Test Driver");
++MODULE_LICENSE("GPL");
