@@ -38,10 +38,10 @@ KBRANCH = "linux-5.10.y"
 SRC_URI_lab3-qemux86 = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;branch=${KBRANCH}"
 SRC_URI_lab3-qemux86 += "file://defconfig"
 
-LINUX_VERSION_lab3-qemux86 ?= "5.10.66"
+LINUX_VERSION_lab3-qemux86 ?= "5.10.113"
 
-# the sha of the commit for 4.19.8.  git log --grep=4.19.8 -n 1
-SRCREV_lab3-qemux86="${AUTOREV}"
+# the sha of the commit for LINUX_VERSION.  git log --grep=<version> -n 1
+SRCREV_lab3-qemux86="54af9dd2b958096a25860b80d48a04cf59b53475"
 
 LINUX_VERSION_EXTENSION_lab3-qemux86 ?= "-custom"
 
