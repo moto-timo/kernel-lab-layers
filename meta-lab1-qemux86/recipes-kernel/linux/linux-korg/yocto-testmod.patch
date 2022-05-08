@@ -44,14 +44,14 @@ index 000000000..c71b15e78
 +
 +static int __init yocto_testmod_init(void)
 +{
-+	printk("Kilroy was here!");
++	pr_info("Kilroy was here!");
 +
 +	return 0;
 +}
 +
 +static void __exit yocto_testmod_exit(void)
 +{
-+	printk("Kilroy was not here!");
++	pr_info("Kilroy was not here!");
 +}
 +
 +module_init(yocto_testmod_init);
