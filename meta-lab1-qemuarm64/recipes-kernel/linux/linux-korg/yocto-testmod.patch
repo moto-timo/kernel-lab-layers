@@ -1,0 +1,62 @@
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index f4fb5c52b..ca3d63f23 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -330,6 +330,11 @@ config HMC6352
+ 	  This driver provides support for the Honeywell HMC6352 compass,
+ 	  providing configuration and heading data via sysfs.
+ 
++config YOCTO_TESTMOD
++	tristate "Yocto Test Driver"
++	help
++	  This driver provides a silly message for testing Yocto.
++
+ config DS1682
+ 	tristate "Dallas DS1682 Total Elapsed Time Recorder with Alarm"
+ 	depends on I2C
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index e92a56d44..7c5c9a08b 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -32,6 +32,7 @@ obj-$(CONFIG_SENSORS_TSL2550)	+= tsl2550.o
+ obj-$(CONFIG_DS1682)		+= ds1682.o
+ obj-$(CONFIG_C2PORT)		+= c2port/
+ obj-$(CONFIG_HMC6352)		+= hmc6352.o
++obj-$(CONFIG_YOCTO_TESTMOD)	+= yocto-testmod.o
+ obj-y				+= eeprom/
+ obj-y				+= cb710/
+ obj-$(CONFIG_VMWARE_BALLOON)	+= vmw_balloon.o
+diff --git a/drivers/misc/yocto-testmod.c b/drivers/misc/yocto-testmod.c
+new file mode 100644
+index 000000000..c71b15e78
+--- /dev/null
++++ b/drivers/misc/yocto-testmod.c
+@@ -0,0 +1,28 @@
++/*
++ * Copyright 2014 Intel Corporation
++ * Authored-by:  Tom Zanussi <tom.zanussi@linux.intel.com>
++ *
++ * SPDX-License-Identifier: GPL-2.0-only
++ *
++ */
++
++#include <linux/module.h>
++
++static int __init yocto_testmod_init(void)
++{
++	pr_info("Kilroy was here!");
++
++	return 0;
++}
++
++static void __exit yocto_testmod_exit(void)
++{
++	pr_info("Kilroy was not here!");
++}
++
++module_init(yocto_testmod_init);
++module_exit(yocto_testmod_exit);
++
++MODULE_AUTHOR("Tom Zanussi <tom.zanussi@linux.intel.com");
++MODULE_DESCRIPTION("Yocto Test Driver");
++MODULE_LICENSE("GPL");
