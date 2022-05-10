@@ -32,18 +32,18 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-# KBRANCH is the branch the used for the git clone. In this case the tip of 5.10 stable
-KBRANCH = "linux-5.10.y"
+# KBRANCH is the branch the used for the git clone. In this case the tip of 5.17 stable
+KBRANCH = "linux-5.17.y"
 
-SRC_URI_lab3-qemux86 = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;branch=${KBRANCH}"
-SRC_URI_lab3-qemux86 += "file://defconfig"
+SRC_URI:lab3-qemux86 = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;branch=${KBRANCH}"
+SRC_URI:lab3-qemux86 += "file://defconfig"
 
-LINUX_VERSION_lab3-qemux86 ?= "5.10.113"
+LINUX_VERSION:lab3-qemux86 ?= "5.17.5"
 
 # the sha of the commit for LINUX_VERSION.  git log --grep=<version> -n 1
-SRCREV_lab3-qemux86="54af9dd2b958096a25860b80d48a04cf59b53475"
+SRCREV:lab3-qemux86="2731bd17017d4a0e2180a1917ab22d7820a07330"
 
-LINUX_VERSION_EXTENSION_lab3-qemux86 ?= "-custom"
+LINUX_VERSION_EXTENSION:lab3-qemux86 ?= "-custom"
 
 #SRC_URI_lab3-qemux86 += "file://yocto-testmod.patch"
 #SRC_URI_lab3-qemux86 += "file://lab3.cfg"
@@ -53,7 +53,7 @@ LINUX_VERSION_EXTENSION_lab3-qemux86 ?= "-custom"
 PR = "r1"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
-COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
+COMPATIBLE_MACHINE:lab3-qemux86 = "lab3-qemux86"
 
 #The following features are metadata used by linux-yocto
 KERNEL_FEATURES:remove:lab3-qemux86 = " features/debug/printk.scc"
