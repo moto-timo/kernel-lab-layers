@@ -27,19 +27,22 @@
 #            SRC_URI += "file://feature.scc"
 #
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-SRC_URI_lab4-qemux86 = "git:///home/jay/poky/linux-stable-work.git"
-SRC_URI_lab4-qemux86 += "file://defconfig"
+SRC_URI:lab4-qemux86 = "git://${HOME}/linux-stable-work.git;protocol=file;name=machine;branch=${KBRANCH}"
+#SRC_URI:lab4-qemux86 += "git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=masater;destsuffix=${KMETA}"
+SRC_URI:lab4-qemux86 += "file://defconfig"
 
 KBRANCH = "work-branch"
 
-LINUX_VERSION_lab4-qemux86 ?= "5.10.66"
-LINUX_VERSION_EXTENSION_lab4-qemux86 ?= "-custom"
+LINUX_VERSION:lab4-qemux86 ?= "5.17.5"
+LINUX_VERSION_EXTENSION:lab4-qemux86 ?= "-custom"
 
-SRCREV_lab4-qemux86="${AUTOREV}"
+SRCREV_machine:lab4-qemux86 = "${AUTOREV}"
+#SRCREV_meta:lab4-qemux86 = "eae62f81fb6e8a966b7043cd9e238094dd52e8b3"
 
 PR = "r1"
 PV = "${LINUX_VERSION}+git${SRCPV}"
@@ -47,10 +50,10 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 # where the version number is in flux.
 # Otherwise to stay on a specific kernel version explicity set LINUX_VERSION_lab4-qemux86
 # to the full version number.  i.e; LINUX_VERSION_lab4-qemux86 ?= "4.18.20"
-KERNEL_VERSION_SANITY_SKIP="1"
+KERNEL_VERSION_SANITY_SKIP = "1"
 
-COMPATIBLE_MACHINE_lab4-qemux86 = "lab4-qemux86"
+COMPATIBLE_MACHINE:lab4-qemux86 = "lab4-qemux86"
 #The following features are metadata used by linux-yocto
-KERNEL_FEATURES:remove:lab4-qemux86 = " features/debug/printk.scc "
-KERNEL_FEATURES:remove:lab4-qemux86 = " features/kernel-sample/kernel-sample.scc"
+KERNEL_FEATURES:remove:lab4-qemux86 = "features/debug/printk.scc"
+KERNEL_FEATURES:remove:lab4-qemux86 = "features/kernel-sample/kernel-sample.scc"
 KERNEL_FEATURES:remove:lab3-qemux86 = "cfg/fs/vfat.scc"
